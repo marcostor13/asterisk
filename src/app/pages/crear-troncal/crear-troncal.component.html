@@ -1,0 +1,77 @@
+<div class="row shadow-sm mt-3 justify-content-center m-0">
+    <div class="col-8">        
+        <p class="h5 text-muted">Ingrese los detalles</p>
+        <form (ngSubmit)="crearTroncal()" [formGroup]="formCrearTroncal"  class="mt-5 pb-5">
+            <div class="form-group d-flex align-items-center">
+                <div class="col-3">
+                    <label class="text-muted" for="troncal">Troncal</label>
+                </div>
+                <input [class.is-invalid]="troncal.touched && troncal.invalid" type="text" class="form-control ml-3 col-6" formControlName="troncal" placeholder="Ingresa la troncal">
+                <div class="col-3" *ngIf="troncal.invalid && (troncal.dirty || troncal.touched)">
+                    <small class="text-danger" *ngIf="troncal.errors.required">Campo requerido</small>
+                </div>
+            </div>
+            <div class="form-group d-flex align-items-center">
+                <div class="col-3">
+                    <label class="text-muted" for="host">Host</label>
+                </div>
+                <input [class.is-invalid]="host.touched && host.invalid" type="text" class="form-control ml-3 col-6" formControlName="host" placeholder="Ingresa el host">
+                <div class="col-3" *ngIf="host.invalid && (host.dirty || host.touched)">
+                    <small class="text-danger" *ngIf="host.errors.required">Campo Requerido</small>
+                </div>
+            </div>
+            <div class="form-group d-flex align-items-center">
+                <div class="col-3">
+                    <label class="text-muted" for="climit">Call Limit</label>
+                </div>
+                <input [class.is-invalid]="climit.touched && climit.invalid" type="text" class="form-control ml-3 col-6" formControlName="climit" placeholder="Ingresa el Call Limit">
+                <div class="col-3" *ngIf="climit.invalid && (climit.dirty || climit.touched)">
+                    <small class="text-danger" *ngIf="climit.errors.required">Campo Requerido</small>
+                </div>
+            </div>
+            <div class="form-group d-flex align-items-center">
+                <div class="col-3">
+                    <label class="text-muted" for="nat">Nat</label>
+                </div>                
+                <mat-radio-group aria-labelledby="Nat" class="radio-group ml-3" formControlName="nat">
+                    <mat-radio-button [id]="nat" class="radio-button" *ngFor="let nat of nats" [value]="nat">
+                        {{nat}}
+                    </mat-radio-button>
+                </mat-radio-group>
+                <div class="col-3" *ngIf="nat.invalid && (nat.dirty || nat.touched)">
+                    <small class="text-danger" *ngIf="nat.errors.required">Campo Requerido</small>
+                </div>
+                
+            </div>
+            <div class="form-group d-flex align-items-center">
+                <div class="col-3">
+                    <label class="text-muted" for="codec">Codecs</label>
+                </div>
+                <mat-radio-group aria-labelledby="Codecs" class="radio-group ml-3" formControlName="codec">
+                    <mat-radio-button [id]="codec" class="radio-button" *ngFor="let codec of codecs" [value]="codec">
+                        {{codec}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            
+            </div>
+            <div class="form-group d-flex align-items-center">
+                <div class="col-3">
+                    <label class="text-muted" for="tipo">Nat</label>
+                </div>
+                <mat-radio-group aria-labelledby="Tipo" class="radio-group ml-3" formControlName="tipo">
+                    <mat-radio-button [id]="tipo" class="radio-button" *ngFor="let tipo of tipos" [value]="tipo">
+                        {{tipo}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            
+            </div>
+
+            <button type="submit" class="btn tran col-3" [disabled]="!formCrearTroncal.valid">Crear</button>
+            <div class="mt-3">
+                <span class="text-warning">{{ response }}</span>
+            </div>
+
+        </form>
+    </div>
+    
+</div>

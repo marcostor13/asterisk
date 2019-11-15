@@ -1,0 +1,10 @@
+<div class="d-flex justify-content-between">
+    <div class="d-flex align-items-center">
+        <p class="title" *ngIf='info.title.show'>{{info.title.data}}</p>
+        <p id="subTitle" class="ml-4 pl-4 text-muted border-left" *ngIf='info.subTitle.show'>{{info.subTitle.data}}</p>
+    </div>
+
+    <div class="d-flex align-items-center" *ngIf='info.button.show'>
+        <button routerLink="{{info.button.redirectURL}}" class="tran font-weight-bold shadow-sm">{{info.button.data}}</button>
+    </div>
+</div>

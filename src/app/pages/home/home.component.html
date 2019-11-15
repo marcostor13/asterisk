@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IVR</title>
+</head>
+
+<body>
+    <app-header></app-header>
+    <div class="container-fluid p-0">
+        <div class="row justify-content-center m-0">
+            <div class="col-11 col-xl-8 mt-5">
+                <app-menu></app-menu>
+                <div class="bg-white rounded-right rounded-bottom p-4">
+                    <app-header-content></app-header-content>
+                    <app-dashboard class="show" *ngIf="dashboard || home"></app-dashboard>
+                    <app-usuarios class="show" *ngIf="usuarios"></app-usuarios>
+                    <app-grupos class="show" *ngIf="grupos"></app-grupos>
+                    <app-campanas class="show" *ngIf="campanas"></app-campanas>
+                    <app-troncales class="show" *ngIf="troncales"></app-troncales>
+                    <app-crear-troncal class="show" *ngIf="crearTroncal"></app-crear-troncal>
+                    <app-estadisticos class="show" *ngIf="estadisticos"></app-estadisticos>
+                    <app-crear-usuario class="show" *ngIf="crearUsuario"></app-crear-usuario>
+                    <app-editar-usuario class="show" *ngIf="editarUsuario"></app-editar-usuario>
+                    <app-crear-grupo class="show" *ngIf="crearGrupo"></app-crear-grupo>
+                    <app-editar-grupo class="show" *ngIf="editarGrupo"></app-editar-grupo>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+button{
+    background-color: rgb(238, 50, 50) !important;
+    color: white;
+    border: none; 
+    border-radius: 3px;
+
+
+}
+
+button:hover{
+    opacity: .8;
+}
+
+.options, .mat-column-options{
+    max-width: 50px !important;
+}

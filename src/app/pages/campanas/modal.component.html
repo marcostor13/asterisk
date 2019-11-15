@@ -1,0 +1,10 @@
+<div class="d-flex justify-content-center flex-column align-items-center">
+    <h1 mat-dialog-title>Mensaje</h1>
+    <div mat-dialog-content class="text-center">
+        <p class="text-center">¿Está seguro de {{mensaje}} la campaña?</p>
+    </div>
+    <div mat-dialog-actions class="mb-3">
+        <button class="text-white btn btn-secondary pl-4 pr-4" mat-button (click)="onNoClick()">No</button>
+        <button class="text-white btn btn-primary ml-3 pl-4 pr-4" mat-button (click)="onSiClick()">Si</button>
+    </div>
+</div>

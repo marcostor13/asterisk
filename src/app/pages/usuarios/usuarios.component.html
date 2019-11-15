@@ -1,0 +1,58 @@
+<div class="row shadow-sm mt-3 justify-content-center m-0">
+    <div class="col-12 p-0">
+
+        <div width="600" class="mat-elevation-z8 col-12 p-0 overflow-auto">
+            <table mat-table [dataSource]="dataSource" class="col-12 responsive">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> ID. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.idpersonal}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombres}} {{element.ape_paterno}}</td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="dni">
+                    <th mat-header-cell *matHeaderCellDef> DNI </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dni}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="negocio">
+                    <th mat-header-cell *matHeaderCellDef> Negocio </th>
+                    <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="correo">
+                    <th mat-header-cell *matHeaderCellDef> Correo </th>
+                    <td mat-cell *matCellDef="let element"> {{element.mail}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="usuario">
+                    <th mat-header-cell *matHeaderCellDef> Usuario </th>
+                    <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="options">
+                    <th class="options" mat-header-cell *matHeaderCellDef>Opciones</th>
+                    <td class="options" mat-cell *matCellDef="let element" class="p-0"> 
+                        <button (click)='editarUsuario(element.idpersonal)' class="p-1 pl-3 pr-3 tran">Editar</button> 
+                        <button (click)='openDialog(element.idpersonal)' class="p-1 pl-3 pr-3 ml-3 tran bg-danger">Eliminar</button> 
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+
+    </div>
+
+</div>

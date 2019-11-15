@@ -1,0 +1,38 @@
+<div class="row shadow-sm mt-3 justify-content-center m-0">
+    <div class="col-12 p-0">
+
+        <div width="600" class="mat-elevation-z8 col-12 p-0 overflow-auto">
+            <table mat-table [dataSource]="dataSource" class="col-12 responsive">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="idgrupo">
+                    <th mat-header-cell *matHeaderCellDef> ID. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.idnegocio}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="grupo">
+                    <th mat-header-cell *matHeaderCellDef> Grupo </th>
+                    <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="options">
+                    <th class="options" mat-header-cell *matHeaderCellDef>Opciones</th>
+                    <td class="options" mat-cell *matCellDef="let element" class="p-0">
+                        <button (click)='editarGrupo(element.idnegocio)' class="p-1 pl-3 pr-3 tran">Editar</button>
+                        <button (click)='openDialog(element.idnegocio)'
+                            class="p-1 pl-3 pr-3 ml-3 tran bg-danger">Eliminar</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+
+    </div>
+
+</div>

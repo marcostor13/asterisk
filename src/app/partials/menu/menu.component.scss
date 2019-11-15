@@ -1,0 +1,16 @@
+li{
+    color: #757893; 
+    background-color: #d5d0f1;
+    padding: 16px;
+    border-top-left-radius: .2em;
+    border-top-right-radius: .2em;
+    font-weight: 500;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.active{
+    background-color: white !important;
+    color: #5d78ff !important; 
+}

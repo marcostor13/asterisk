@@ -1,0 +1,8 @@
+<ul class="row p-0 m-0 shadow-sm">
+    <li routerLink="/dashboard" [ngClass]="{'active show': dashboard || home}" >Panel Principal</li>
+    <li *ngIf="superUsuario" routerLink="/usuarios" [ngClass]="{'active show': usuarios}" class="ml-1">Usuarios</li>
+    <li *ngIf="superUsuario" routerLink="/grupos" [ngClass]="{'active show': grupos}" class="ml-1">Grupos</li>
+    <li routerLink="/campanas" [ngClass]="{'active show': campanas}" class="ml-1">Campañas</li>
+    <li routerLink="/troncales" [ngClass]="{'active show': troncales}" class="ml-1">Troncales</li>
+    <!-- <li routerLink="/estadisticos" [ngClass]="{'active show': estadisticos}" class="ml-1">Estadísticos</li> -->
+</ul>

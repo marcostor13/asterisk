@@ -1,0 +1,14 @@
+<header class="row p-3 justify-content-center bg-white shadow-sm m-0">
+    <div class="d-flex justify-content-between col-11 col-xl-8">
+        <div class="row align-items-center">
+            <img width="40" src="/assets/img/logo.jpg" alt="IVR">
+            <h5 class="text-muted  ml-2">Sistema IVR</h5>
+        </div>
+        <div class="row align-items-center">
+            <p class="text-muted mt-3  mr-2 d-none d-sm-block">Bienvenido<b class="text-color2"> {{dataUser.nombres}}</b></p>
+            <div title="Salir" (click)="exit();" class="tran exit bg-color1 shadow-sm rounded p-2 cursor">
+                <img width=30 src="https://img.icons8.com/dusk/64/000000/exit.png">
+            </div>
+        </div>
+    </div>    
+</header>

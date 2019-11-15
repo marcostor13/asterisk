@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Asap+Condensed:400,500,600,700&display=swap');
+
+.font-lato{
+    font-family: 'Lato', sans-serif;
+}
+
+.font-asap, *{
+    font-family: 'Asap Condensed', sans-serif;
+}
+
+.bg-color1{
+    background-color: $color1;
+}
+.bg-color2{
+    background-color: $color2;
+}
+.bg-color3{
+    background-color: $color3;
+}
+.bg-color4{
+    background-color: $color4;
+}
+
+.text-color1{
+    color: $color1;
+}
+.text-color2{
+    color: $color2;
+}
+.text-color3{
+    color: $color3;
+}
+.text-color4{
+    color: $color4;
+}
+
+li{
+    list-style: none;
+}
+
+.cursor{
+    cursor: pointer;
+}
+
+//buttons
+
+.btn1{
+    
+}
+
+.btn1:hover{
+    opacity: .8;
+    color: white;    
+}
+
+.buttonHover:hover{
+    opacity: .8;
+    transition: all 0.2s ease-in-out;
+}
+
+.tran{
+    transition: all 0.2s ease-in-out;
+}
+
+.hide{
+    display:none; 
+    -webkit-animation: opacityOut .2s ease-in; /* Safari 4.0 - 8.0 */
+    animation: opacityOut .2s ease-in;
+}
+
+.show{
+    -webkit-animation: opacityIn .2s ease-in; /* Safari 4.0 - 8.0 */
+    animation: opacityIn .2s ease-in;
+}
+
+
+//KEY FRAMES
+
+@keyframes opacityOut{
+    from {opacity:1}
+    to {opacity: 0}
+}
+
+@keyframes opacityIn{
+    from {opacity:0}
+    to {opacity: 1}
+}
+
