@@ -20,8 +20,11 @@ export class CrearGrupoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataUser = JSON.parse(this.cookieService.get('datauser'));
-
+    if (this.cookieService.get('datauser') != '') {
+      if (this.cookieService.get('datauser') != '') {
+      this.dataUser = JSON.parse(this.cookieService.get('datauser'));
+    } 
+    }  
 
   }
 

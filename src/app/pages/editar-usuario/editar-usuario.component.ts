@@ -23,7 +23,9 @@ export class EditarUsuarioComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataUser = JSON.parse(this.cookieService.get('datauser'));
+    if (this.cookieService.get('datauser') != '') {
+      this.dataUser = JSON.parse(this.cookieService.get('datauser'));
+    } 
 
     this.obtenerNegocios();
     this.obtenerTipoNivel();

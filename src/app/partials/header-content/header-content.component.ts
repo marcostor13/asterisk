@@ -7,7 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderContentComponent implements OnInit {
 
-  public info = {};
+  public info = {
+    title: {
+      show: false,
+      data: '' 
+    },
+    subTitle: {
+      show: false,
+      data: ''
+    },
+    button: {
+      show: false,
+      data: '',
+      redirectURL: ''
+    }
+  };
+
+
   
   constructor() { }
 

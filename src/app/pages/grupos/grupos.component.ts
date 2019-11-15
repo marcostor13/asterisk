@@ -27,7 +27,9 @@ export class GruposComponent implements OnInit {
 
 
   constructor(private cookieService: CookieService, private phpserviceService: PhpserviceService, private router: Router, public dialog: MatDialog) {
-    this.dataUser = JSON.parse(this.cookieService.get('datauser'));
+    if (this.cookieService.get('datauser') != '') {
+      this.dataUser = JSON.parse(this.cookieService.get('datauser'));
+    } 
 
   }
 

@@ -29,8 +29,11 @@ export class CampanasComponent implements OnInit {
 
 
   constructor(private cookieService: CookieService, private phpserviceService: PhpserviceService, private router: Router, public dialog: MatDialog) {
-    this.dataUser = JSON.parse(this.cookieService.get('datauser'));
-    console.log(this.dataUser);
+    if (this.cookieService.get('datauser') != ''){
+      if (this.cookieService.get('datauser') != '') {
+      this.dataUser = JSON.parse(this.cookieService.get('datauser'));
+    } 
+    }   
   }
 
   openDialog(val, datos, action): void {
@@ -87,6 +90,10 @@ export class CampanasComponent implements OnInit {
         console.log(datos['message']);
       }
     });
+  }
+
+  verDetalle(idcampana){
+    console.log(idcampana);
   }
 
   descargarCampana(nombrecampana){

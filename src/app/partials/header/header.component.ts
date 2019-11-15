@@ -21,7 +21,9 @@ export class HeaderComponent implements OnInit {
       console.log('k');
       this.router.navigate(['/login']);
     }else{
+      if (this.cookieService.get('datauser') != '') {
       this.dataUser = JSON.parse(this.cookieService.get('datauser'));
+    } 
     }
   }
 

@@ -19,7 +19,9 @@ export class MenuComponent implements OnInit {
   public superUsuario = false;
 
   constructor(private cookieService: CookieService) { 
-    this.dataUser = JSON.parse(this.cookieService.get('datauser'));
+    if (this.cookieService.get('datauser') != '') {
+      this.dataUser = JSON.parse(this.cookieService.get('datauser'));
+    } 
     
   }
 

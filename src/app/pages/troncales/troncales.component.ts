@@ -21,7 +21,9 @@ export class TroncalesComponent implements OnInit {
   public dataUser; 
 
   constructor(private cookieService: CookieService, private phpserviceService: PhpserviceService) {
-    this.dataUser = JSON.parse(this.cookieService.get('datauser'));
+    if (this.cookieService.get('datauser') != '') {
+      this.dataUser = JSON.parse(this.cookieService.get('datauser'));
+    } 
    }
   
 
