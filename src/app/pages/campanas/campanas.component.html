@@ -20,7 +20,7 @@
                 <ng-container matColumnDef="detalle">
                     <th mat-header-cell *matHeaderCellDef> Detalle </th>
                     <td mat-cell *matCellDef="let element"> 
-                        <button (click)='verDetalle(element.idcampana)' class="p-1 pl-3 pr-3 tran">Ver detalle</button> 
+                        <button (click)='openDetail(element)' class="p-1 pl-3 pr-3 tran">Ver detalle</button> 
                     </td>
                 </ng-container>
 

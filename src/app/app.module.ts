@@ -13,7 +13,7 @@ import { MenuComponent } from './partials/menu/menu.component';
 import { HomeComponent } from './pages/home/home.component';
 import { UsuariosComponent, ModalComponent } from './pages/usuarios/usuarios.component';
 import { GruposComponent, ModalComponent2 } from './pages/grupos/grupos.component';
-import { CampanasComponent, ModalComponentCampanas } from './pages/campanas/campanas.component';
+import { CampanasComponent, ModalComponentCampanas, ModalComponentCampanasDetail } from './pages/campanas/campanas.component';
 import { TroncalesComponent } from './pages/troncales/troncales.component';
 import { EstadisticosComponent } from './pages/estadisticos/estadisticos.component';
 import { HeaderContentComponent } from './partials/header-content/header-content.component';
@@ -27,6 +27,7 @@ import { EditarUsuarioComponent } from './pages/editar-usuario/editar-usuario.co
 import { MatDialogModule } from '@angular/material/dialog';
 import { CrearGrupoComponent } from './pages/crear-grupo/crear-grupo.component';
 import { EditarGrupoComponent } from './pages/editar-grupo/editar-grupo.component';
+import { CrearCampanaComponent } from './pages/crear-campana/crear-campana.component';
 
 
 
@@ -50,8 +51,11 @@ import { EditarGrupoComponent } from './pages/editar-grupo/editar-grupo.componen
     ModalComponent,
     ModalComponent2,
     ModalComponentCampanas,
+    ModalComponentCampanasDetail,
     CrearGrupoComponent,
     EditarGrupoComponent,
+    CrearCampanaComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -69,7 +73,7 @@ import { EditarGrupoComponent } from './pages/editar-grupo/editar-grupo.componen
     MatProgressBarModule
      
   ],
-  entryComponents: [ModalComponent, ModalComponent2, ModalComponentCampanas],
+  entryComponents: [ModalComponent, ModalComponent2, ModalComponentCampanas, ModalComponentCampanasDetail],
   providers: [
     CookieService
   ],

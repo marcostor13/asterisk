@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   public editarUsuario = false;
   public crearGrupo = false;
   public editarGrupo = false;
+  public crearCampana = false;
   ngOnInit() {
     this.changueContent();
   }
@@ -57,6 +58,9 @@ export class HomeComponent implements OnInit {
         break;
       case '/crear-grupo':
         this.crearGrupo = true;
+        break;
+      case '/crear-campana':
+        this.crearCampana = true;
         break;
 
       default:

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -42,6 +43,10 @@ export class PhpserviceService {
   funciones(datos) {
     return this.http.post(`${this.url}funciones.php`, JSON.stringify(datos));
   }
+
+  uploadFile(datos: any): Observable<any> {
+    return this.http.post(`${this.url}get/uploadFile.php`, datos);
+  } 
 
 
 }

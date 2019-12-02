@@ -12,6 +12,10 @@ export interface DialogData {
   action: string;
 }
 
+export interface DialogDataDetail {
+  datos: [];
+}
+
 @Component({
   selector: 'app-campanas',
   templateUrl: './campanas.component.html',
@@ -37,9 +41,23 @@ export class CampanasComponent implements OnInit {
   }
 
   openDialog(val, datos, action): void {
+    console.log(datos);
     const dialogRef = this.dialog.open(ModalComponentCampanas, {
       width: '250px',
       data: { datos: datos, val: val, action: action }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed: ' + result);
+    });
+  }
+
+
+  openDetail(datos): void {
+    console.log(datos);
+    const dialogRef = this.dialog.open(ModalComponentCampanasDetail, {
+      width: '250px',
+      data: { datos: datos }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -116,6 +134,7 @@ export class CampanasComponent implements OnInit {
 })
 
 
+
 export class ModalComponentCampanas {
 
 
@@ -134,6 +153,27 @@ export class ModalComponentCampanas {
   }
 
   onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+}
+
+
+@Component({
+  selector: 'modal.componentDetail',
+  templateUrl: './modal.componentDetail.html',
+  styles: ['']
+})
+
+export class ModalComponentCampanasDetail {
+
+  constructor(public dialogRef: MatDialogRef<ModalComponentCampanasDetail>, @Inject(MAT_DIALOG_DATA) public data: DialogDataDetail, public dialog: MatDialog) {
+    this.mensaje = this.data.datos;
+  }
+
+  mensaje: [];
+  
+  close(): void {
     this.dialogRef.close();
   }
 
