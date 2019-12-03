@@ -48,5 +48,15 @@ export class PhpserviceService {
     return this.http.post(`${this.url}get/uploadFile.php`, datos);
   } 
 
+  uploadFileExcel(datos: any): Observable<any> {
+    return this.http.post(`${this.url}get/uploadFileExcel.php`, datos);
+  } 
+
+  crearCampana(datos: any): Observable<any> {
+    return this.http.post(`${this.url}get/crear-campanas.php`, datos);
+  } 
+
+  
+
 
 }

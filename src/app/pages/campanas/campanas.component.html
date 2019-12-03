@@ -62,12 +62,12 @@
                             <button (click)='openDialog("2", element, "Parar")' class="p-1 pl-3 pr-3 tran">Parar</button>
                             <button (click)='openDialog("4", element, "Borrar")' class="p-1 pl-3 pr-3 tran ml-2">Borrar</button>
                         </div>
-                        <div *ngIf="element.pid_campana==0 && element.total_enviados == element.Total_barridos">
+                        <div *ngIf="element.pid_campana==0 && element.total_enviados == element.Total_barridos && element.contestados!=0">
                             <button (click)='openDialog("5", element, "Reiniciar")' class="p-1 pl-3 pr-3 tran">Reiniciar</button>
                             <button (click)='openDialog("3", element, "Relanzar")' class="p-1 pl-3 pr-3 tran ml-2 bg-success">Relanzar</button>
                             <button (click)='openDialog("4", element, "Borrar")' class="p-1 pl-3 pr-3 tran ml-2 bg-danger">Borrar</button>
                         </div>
-                        <div *ngIf="element.pid_campana==0 && element.total_enviados != element.Total_barridos">
+                        <div *ngIf="element.pid_campana==0 && element.total_enviados != element.Total_barridos && element.contestados!=0">
                             <button (click)='openDialog("1", element, "Iniciar")' class="p-1 pl-3 pr-3 tran">Iniciar</button>
                             <button (click)='openDialog("3", element, "Relanzar")' class="p-1 pl-3 pr-3 tran ml-2 bg-success">Relanzar</button>
                             <button (click)='openDialog("4", element, "Borrar")' class="p-1 pl-3 pr-3 tran ml-2 bg-danger">Borrar</button>
