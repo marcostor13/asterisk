@@ -45,8 +45,9 @@ export class CrearTroncalComponent implements OnInit {
         funcion: 'crearTroncales'
       };
       this.phpserviceService.funciones(data).subscribe(datos => {
-
-        if (datos['status'] == 200) {          
+        console.log(datos);  
+        if (datos['status'] == 200) {  
+                
           this.response = datos['message'];          
         } else {
           console.log(datos['message']);          

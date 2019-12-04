@@ -37,9 +37,9 @@
                     <th mat-header-cell *matHeaderCellDef   class="pl-5"> Estado </th>
                     <td mat-cell *matCellDef="let element">
 
-                        <button class="p-1 pl-3 pr-3 tran bg-secondary ml-5" (click)='descargarCampana(element.nombre_campana)' *ngIf="element.pid_campana==0 && element.contestados==0">Pendiente</button>
+                        <button class="p-1 pl-3 pr-3 tran bg-secondary ml-5" (click)='descargarCampana(element.nombre_campana)' *ngIf="element.pid_campana==0 && element.contestados==0 && element.total_enviados!=element.Total_barridos">Pendiente</button>
                         <button class="p-1 pl-3 pr-3 tran bg-secondary ml-5" (click)='descargarCampana(element.nombre_campana)' *ngIf="element.pid_campana!=0">Enviando</button>
-                        <button class="p-1 pl-3 pr-3 tran bg-secondary ml-5" (click)='descargarCampana(element.nombre_campana)' *ngIf="element.pid_campana==0 && element.total_enviados!=element.Total_barridos">En Pausa</button>
+                        <button class="p-1 pl-3 pr-3 tran bg-secondary ml-5" (click)='descargarCampana(element.nombre_campana)' *ngIf="element.pid_campana==0 && element.total_enviados!=element.Total_barridos && element.contestados!=0">En Pausa</button>
                         <button class="p-1 pl-3 pr-3 tran bg-secondary ml-5" (click)='descargarCampana(element.nombre_campana)' *ngIf="element.pid_campana==0 && element.total_enviados==element.Total_barridos">Finalizado</button>
 
                     </td>                

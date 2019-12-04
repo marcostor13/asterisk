@@ -102,7 +102,8 @@ export class CampanasComponent implements OnInit {
     this.phpserviceService.funciones(data).subscribe(datos => {
 
       if (datos['status'] == 200) {
-        console.log(datos['message']);
+        alert(datos['message']);
+        window.location.reload();
         
       } else {
         console.log(datos['message']);
