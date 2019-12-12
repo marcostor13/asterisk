@@ -1,1 +1,65 @@
-<p>dashboard works!</p>
+<div class="row shadow-sm mt-3 justify-content-center m-0">
+    <div class="col-12 p-0">
+
+        <div width="600" class="mat-elevation-z8 col-12 p-0 overflow-auto">
+            
+            <div class="form-group pl-4 pr-4 pt-4">
+                <label for="campanas">Campañas</label>
+                <select class="form-control" [id]="'campanas'" (change)="getCalls($event)">
+                    <option *ngFor="let campana of campanas" [value]="campana.nombre_campana">{{campana.nombre_campana}}</option>
+                </select>
+            </div>
+            
+            <div class="p-2 pl-4 pr-4">
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+                </mat-form-field>
+            </div>
+            <table mat-table [dataSource]="dataSource" class="col-12 responsive">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="idenvio_ivr">
+                    <th mat-header-cell *matHeaderCellDef> ID. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.idenvio_ivr}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="numero">
+                    <th mat-header-cell *matHeaderCellDef> Número </th>
+                    <td mat-cell *matCellDef="let element"> {{element.numero}}</td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="fecha_envio">
+                    <th mat-header-cell *matHeaderCellDef> Fecha de envío </th>
+                    <td mat-cell *matCellDef="let element"> {{element.fecha_envio}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="callerid">
+                    <th mat-header-cell *matHeaderCellDef> Caller ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.callerid}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="cause_ast">
+                    <th mat-header-cell *matHeaderCellDef> Estado</th>
+                    <td mat-cell *matCellDef="let element"> {{element.cause_ast}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="options">
+                    <th class="options" mat-header-cell *matHeaderCellDef>Opciones</th>
+                    <td class="options" mat-cell *matCellDef="let element" class="p-0">
+                        <button (click)='openDetail(element)' class="p-1 pl-3 pr-3 tran">Ver Detalle</button>                       
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+
+    </div>
+
+</div>

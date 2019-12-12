@@ -187,6 +187,25 @@ export class HeaderContentComponent implements OnInit {
           }
         }
         break;
+
+      case '/dashboard':
+
+        this.info = {
+          title: {
+            show: true,
+            data: 'Llamadas'
+          },
+          subTitle: {
+            show: true,
+            data: ''
+          },
+          button: {
+            show: true,
+            data: '',
+            redirectURL: ''
+          }
+        }
+        break;
       
         
 

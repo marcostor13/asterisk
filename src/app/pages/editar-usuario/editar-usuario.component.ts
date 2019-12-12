@@ -58,6 +58,7 @@ export class EditarUsuarioComponent implements OnInit {
         this.formCrearUsuario.controls['negocio'].setValue(dataUserEdit.idnegocio);
         this.formCrearUsuario.controls['tiponivel'].setValue(dataUserEdit.idtipo_nivel);
         this.formCrearUsuario.controls['correo'].setValue(dataUserEdit.mail);
+        this.formCrearUsuario.controls['grabacion_opcion'].setValue(dataUserEdit.grabacion_opcion);
 
       } else {
         console.log(datos['message']);
@@ -136,6 +137,7 @@ export class EditarUsuarioComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
       negocio: new FormControl('', [Validators.required]),
       tiponivel: new FormControl('', [Validators.required]),
+      grabacion_opcion: new FormControl(''),
       correo: new FormControl('', [Validators.required, Validators.email]),
     });
   }
@@ -151,5 +153,6 @@ export class EditarUsuarioComponent implements OnInit {
   get negocio() { return this.formCrearUsuario.get('negocio'); }
   get tiponivel() { return this.formCrearUsuario.get('tiponivel'); }
   get correo() { return this.formCrearUsuario.get('correo'); }
+  get grabacion_opcion() { return this.formCrearUsuario.get('grabacion_opcion'); }
 }
 

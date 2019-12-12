@@ -101,6 +101,7 @@ export class CrearUsuarioComponent implements OnInit {
       negocio: new FormControl('', [Validators.required]),
       tiponivel: new FormControl('', [Validators.required]),
       correo: new FormControl('', [Validators.required, Validators.email]),
+      grabacion_opcion: new FormControl('', [Validators.required]),      
     });
   }
 
@@ -115,4 +116,7 @@ export class CrearUsuarioComponent implements OnInit {
   get negocio() { return this.formCrearUsuario.get('negocio'); }
   get tiponivel() { return this.formCrearUsuario.get('tiponivel'); }
   get correo() { return this.formCrearUsuario.get('correo'); }
+  get grabacion_opcion() { return this.formCrearUsuario.get('grabacion_opcion'); }
+
+  
 }

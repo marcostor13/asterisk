@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DashboardComponent, ModalComponentCalls } from './pages/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './partials/header/header.component';
@@ -55,6 +55,7 @@ import { CrearCampanaComponent } from './pages/crear-campana/crear-campana.compo
     CrearGrupoComponent,
     EditarGrupoComponent,
     CrearCampanaComponent,
+    ModalComponentCalls,
     
   ],
   imports: [
@@ -73,7 +74,7 @@ import { CrearCampanaComponent } from './pages/crear-campana/crear-campana.compo
     MatProgressBarModule
      
   ],
-  entryComponents: [ModalComponent, ModalComponent2, ModalComponentCampanas, ModalComponentCampanasDetail],
+  entryComponents: [ModalComponent, ModalComponent2, ModalComponentCampanas, ModalComponentCampanasDetail, ModalComponentCalls],
   providers: [
     CookieService
   ],
