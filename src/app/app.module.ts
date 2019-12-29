@@ -1,3 +1,4 @@
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CookieService } from 'ngx-cookie-service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -21,7 +22,7 @@ import { CrearTroncalComponent } from './pages/crear-troncal/crear-troncal.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule, MatFormFieldModule, MatInputModule, MatProgressBarModule } from '@angular/material';
+import { MatPaginatorModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { CrearUsuarioComponent } from './pages/crear-usuario/crear-usuario.component';
 import { EditarUsuarioComponent } from './pages/editar-usuario/editar-usuario.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -57,6 +58,7 @@ import { CrearCampanaComponent } from './pages/crear-campana/crear-campana.compo
     CrearCampanaComponent,
     ModalComponentCalls,
     
+    
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,10 @@ import { CrearCampanaComponent } from './pages/crear-campana/crear-campana.compo
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxChartsModule,
      
   ],
   entryComponents: [ModalComponent, ModalComponent2, ModalComponentCampanas, ModalComponentCampanasDetail, ModalComponentCalls],

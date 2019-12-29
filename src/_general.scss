@@ -9,6 +9,10 @@
     font-family: 'Asap Condensed', sans-serif;
 }
 
+html, body{
+     background-color: #e5eaf5;
+}
+
 .bg-color1{
     background-color: $color1;
 }
@@ -75,7 +79,8 @@ li{
 }
 
 mat-dialog-container{
-  min-width: 500px !important;
+  min-width: 800px !important;
+  margin-left: -300px !important;
 }
 
 

@@ -193,6 +193,25 @@ export class HeaderContentComponent implements OnInit {
         this.info = {
           title: {
             show: true,
+            data: 'Panel de control'
+          },
+          subTitle: {
+            show: true,
+            data: ''
+          },
+          button: {
+            show: true,
+            data: '',
+            redirectURL: ''
+          }
+        }
+        break;
+
+      case '/':
+
+        this.info = {
+          title: {
+            show: true,
             data: 'Llamadas'
           },
           subTitle: {

@@ -23,9 +23,10 @@ export interface DialogDataDetail {
 })
 export class CampanasComponent implements OnInit {
 
-  campanas: [];
+  campanas: any[];
+  campanas2: any[];
   displayedColumns: string[] = ['nombre','detalle', 'progreso', 'estado', 'gestiones'];
-  dataSource;
+  dataSource:any;
   cantCampanas = 0;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -41,7 +42,6 @@ export class CampanasComponent implements OnInit {
   }
 
   openDialog(val, datos, action): void {
-    console.log(datos);
     const dialogRef = this.dialog.open(ModalComponentCampanas, {
       width: '250px',
       data: { datos: datos, val: val, action: action }
@@ -54,22 +54,36 @@ export class CampanasComponent implements OnInit {
 
 
   openDetail(datos): void {
-    console.log(datos);
-    const dialogRef = this.dialog.open(ModalComponentCampanasDetail, {
-      width: '250px',
-      data: { datos: datos }
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed: ' + result);
+    this.campanas2.forEach(element => {
+
+      if (element['Nombre de campaña'].trim() == datos.nombre_campana.trim()) {        
+        const dialogRef = this.dialog.open(ModalComponentCampanasDetail, {
+          width: '250px',
+          data: { datos: element }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed: ' + result);
+        });
+      }
     });
+    
   }
 
+
   ngOnInit() {
-    this.obtenerCampanas();
+    var self = this;
+    setInterval(function(){
+      self.obtenerCampanas();
+      self.obtenerCampanas2();
+    }, 5000);
+
   }
 
   obtenerCampanas() {
+
+    this.dataSource = new MatTableDataSource([]);
 
     const data = {
       funcion: 'obtenerCampanas',
@@ -79,12 +93,29 @@ export class CampanasComponent implements OnInit {
     this.phpserviceService.funciones(data).subscribe(datos => {
 
       if (datos['status'] == 200) {
-        console.log(datos['data']);
         this.campanas = datos['data'];
         this.cantCampanas = datos['data'].length;
         document.getElementById('subTitle').innerText = this.cantCampanas.toString() + ' usuarios';
         this.dataSource = new MatTableDataSource(this.campanas)
         this.dataSource.paginator = this.paginator;
+      } else {
+        console.log(datos['message']);
+      }
+    });
+
+  }
+
+  obtenerCampanas2() {
+
+    const data = {
+      funcion: 'obtenerCampanas2',
+      idnegocio: this.dataUser.id_negocio,
+      idnivel: this.dataUser.id_nivel
+    };
+    this.phpserviceService.funciones(data).subscribe(datos => {
+
+      if (datos['status'] == 200) {
+        this.campanas2 = datos['data'];
       } else {
         console.log(datos['message']);
       }

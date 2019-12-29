@@ -1,14 +1,65 @@
 <div class="row shadow-sm mt-3 justify-content-center m-0">
     <div class="col-12 p-0">
 
-        <div width="600" class="mat-elevation-z8 col-12 p-0 overflow-auto">
-            
-            <div class="form-group pl-4 pr-4 pt-4">
-                <label for="campanas">Campañas</label>
-                <select class="form-control" [id]="'campanas'" (change)="getCalls($event)">
+        <div class="d-flex justify-content-end align-items-center" [formGroup]="dateGroup" >
+            <div class="form-group pr-4">
+                <label for="campanas">Campaña</label>
+                <select class="form-control" (change)="getDataDashboard()" formControlName="campana">
+                    <option value="0">Todas las campañas</option>
                     <option *ngFor="let campana of campanas" [value]="campana.nombre_campana">{{campana.nombre_campana}}</option>
                 </select>
             </div>
+            <mat-form-field class="ml-3 rounded-fill col-4 mt-4">
+                <input matInput (ngModelChange)="getDataDashboard()" [matDatepicker]="dateStart" placeholder="Fecha de inicio" formControlName="dateStart">
+                <mat-datepicker-toggle matSuffix [for]="dateStart"></mat-datepicker-toggle>
+                <mat-datepicker #dateStart></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="ml-3 rounded-fill col-4 mt-4">
+                <input matInput (ngModelChange)="getDataDashboard()" [matDatepicker]="dateEnd" placeholder="Fecha final" formControlName="dateEnd">
+                <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
+                <mat-datepicker #dateEnd></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="cuadros mb-5 d-flex justify-content-center align-items-center">
+            <div>
+                <h5 class="text-center">Números gestionados por campaña</h5>
+                <ngx-charts-bar-horizontal 
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="single"
+                    [gradient]="gradient"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [legend]="showLegend"
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabel1"
+                    [yAxisLabel]="yAxisLabel1">
+                </ngx-charts-bar-horizontal>
+            </div>
+            <div>
+                <h5 class="text-center">Total de números por respuesta de llamada</h5>
+                <ngx-charts-bar-horizontal 
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="single2"
+                    [gradient]="gradient"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [legend]="showLegend"
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabel2"
+                    [yAxisLabel]="yAxisLabel2">
+                </ngx-charts-bar-horizontal>
+            </div>
+        </div>
+
+
+
+        <div width="600" class="mat-elevation-z8 col-12 p-0 overflow-auto mt-5">         
+            <h5 class="pl-4 pt-4">Detalle de llamadas</h5>
             
             <div class="p-2 pl-4 pr-4">
                 <mat-form-field>
@@ -57,7 +108,7 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
 
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            <mat-paginator [pageSizeOptions]="[20, 30, 100]" showFirstLastButtons></mat-paginator>
         </div>
 
     </div>

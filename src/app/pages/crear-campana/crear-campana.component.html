@@ -61,7 +61,7 @@
                 <div class="col-3">
                     <label class="text-muted" for="nombre">Nombre *</label>
                 </div>
-                <input [class.is-invalid]="nombre.touched && nombre.invalid" type="text" class="form-control ml-3 col-6" formControlName="nombre" placeholder="Seleccione una troncal" disabled>
+                <input [class.is-invalid]="nombre.touched && nombre.invalid" type="text" class="form-control ml-3 col-6" formControlName="nombre" placeholder="Seleccione una troncal">
                 <div class="col-3" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
                     <small class="text-danger" *ngIf="nombre.errors.required">Campo requerido</small>
                 </div>
@@ -145,6 +145,20 @@
                     <option value="">Seleccione una opcion</option>
                     <option *ngFor="let troncal of troncales"  [value]="troncal.id">{{troncal.name}}</option>
                 </select>
+                
+            </div>
+
+            <div *ngIf="grabacionOpcion==1" class="form-group d-flex align-items-center">
+                <div class="col-3">
+                    <label class="text-muted" for="grabacion_opcion">Grabación</label>
+                </div>
+                <select  [class.is-invalid]="grabacion_opcion.touched && grabacion_opcion.invalid" class="form-control ml-3 col-6" formControlName="grabacion_opcion">    
+                    <option value="1">SI</option>
+                    <option value="0" [selected]='true'>NO</option>
+                </select>
+                <div class="col-3" *ngIf="grabacion_opcion.invalid && (grabacion_opcion.dirty || grabacion_opcion.touched)">
+                    <small class="text-danger" *ngIf="grabacion_opcion.errors.required">Campo Requerido</small>
+                </div>
                 
             </div>
             

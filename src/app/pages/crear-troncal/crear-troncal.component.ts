@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -18,7 +19,7 @@ export class CrearTroncalComponent implements OnInit {
   public response;
   public dataUser; 
 
-  constructor(private cookieService: CookieService, private phpserviceService: PhpserviceService) { 
+  constructor(private cookieService: CookieService, private phpserviceService: PhpserviceService, private router: Router) { 
     this.formCrearTroncal = this.createFormGroup();
   }
 
@@ -48,7 +49,8 @@ export class CrearTroncalComponent implements OnInit {
         console.log(datos);  
         if (datos['status'] == 200) {  
                 
-          this.response = datos['message'];          
+          this.response = datos['message'];   
+          this.router.navigate(['/troncales']);       
         } else {
           console.log(datos['message']);          
         }

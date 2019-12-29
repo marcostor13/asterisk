@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -20,14 +21,9 @@ export class CrearCampanaComponent implements OnInit {
   proveedores = [];
   troncales = [];
   fechaenvio = '';
-
   ivrResp = false;
-
   fileUpload = '';
   fileUpload2 = ''; 
-  
-
-
   errors = '';
   errors2 = '';
   responseFile = '';
@@ -37,8 +33,9 @@ export class CrearCampanaComponent implements OnInit {
   myimg: string;
   final: Boolean = true;
   msn: string;
+  grabacionOpcion;
 
-  constructor(private cookieService: CookieService, private phpserviceService: PhpserviceService) {
+  constructor(private cookieService: CookieService, private phpserviceService: PhpserviceService, private router:Router) {
     this.formCrearCampana = this.createFormGroup();
   }
 
@@ -57,19 +54,11 @@ export class CrearCampanaComponent implements OnInit {
     this.hora2.setValue('20:00'); 
     // this.getToday();
 
-    
+    this.grabacionOpcion = this.dataUser.grabacion_opcion;
+
 
   }
 
-  // getToday(){
-  //   let today = new Date();
-  //   let dd = String(today.getDate()).padStart(2, '0');
-  //   let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  //   let yyyy = today.getFullYear();
-
-  //   this.dia.setValue(dd + '/' + mm + '/' + yyyy);
-
-  // }
 
   createFormGroup() {
     return new FormGroup({
@@ -83,6 +72,7 @@ export class CrearCampanaComponent implements OnInit {
       ivr: new FormControl('', [Validators.required]),
       trespuesta: new FormControl('', []),
       troncalr: new FormControl('', []),
+      grabacion_opcion: new FormControl('', []),
     });
   }
 
@@ -98,7 +88,6 @@ export class CrearCampanaComponent implements OnInit {
     data.funcion = funcion;
 
     this.phpserviceService.funciones(data).subscribe(datos => {
-      console.log(datos);
       if (datos['status'] == 200) {
         switch (funcion) {
           case 'getProveedores':
@@ -178,7 +167,6 @@ export class CrearCampanaComponent implements OnInit {
         resp => {
           this.loader = false;
           if (resp.status) {
-            console.log(resp.generatedName);
             this.responseFile = "Archivo Subido";
             this.fileUpload = resp.generatedName;
           }
@@ -193,15 +181,12 @@ export class CrearCampanaComponent implements OnInit {
   }
 
   uploadFileExcel(e) {
-    console.log(e);
     if (this.comprueba_extension_wav(e, '.xlsx') === true || this.comprueba_extension_wav(e, '.xlx') === true) {
       this.uploadFileServerExcel(e);
     }
   }
 
   uploadFileServerExcel(ev) {
-
-    console.log(ev);
 
     let img: any = ev.target;
     if (img.files.length > 0) {
@@ -236,7 +221,6 @@ export class CrearCampanaComponent implements OnInit {
       data.id = e.target.value;
 
       this.phpserviceService.funciones(data).subscribe(datos => {
-        console.log(datos);
         if (datos['status'] == 200) {
           this.formCrearCampana.controls['nombre'].setValue(datos['data']);
         } else {
@@ -248,7 +232,6 @@ export class CrearCampanaComponent implements OnInit {
   }
 
   colocarArchivo(event){
-    console.log(event);
     const file = event.target.files[0];
     this.formCrearCampana.get('carga').setValue(file);
   }
@@ -266,7 +249,6 @@ export class CrearCampanaComponent implements OnInit {
       this.response = 'Debe subir un archivo de de excel';
       return false;
     }
-    
 
     if (!this.formCrearCampana.invalid) {
       const data = this.formCrearCampana.value;      
@@ -281,10 +263,9 @@ export class CrearCampanaComponent implements OnInit {
         if (datos['status'] == 200) {
           this.response = datos['message'];
           this.formCrearCampana.reset();
-          console.log(datos);
+          this.router.navigate(['/campanas']);
         } else{
           this.response = datos['message'];
-          console.log(datos);
         }
       });
 
@@ -293,7 +274,6 @@ export class CrearCampanaComponent implements OnInit {
   }
 
   showIvrResp(){
-    console.log('as');
 
     if(this.formCrearCampana.get('ivr').value != 1){
         this.ivrResp = true;
@@ -313,6 +293,7 @@ export class CrearCampanaComponent implements OnInit {
   get ivr() { return this.formCrearCampana.get('ivr'); }
   get trespuesta() { return this.formCrearCampana.get('trespuesta'); }
   get troncalr() { return this.formCrearCampana.get('troncalr'); }
+  get grabacion_opcion() { return this.formCrearCampana.get('grabacion_opcion'); }
 
 
   

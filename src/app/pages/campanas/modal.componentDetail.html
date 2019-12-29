@@ -1,12 +1,13 @@
-<div class="d-flex justify-content-center flex-column align-items-center">
+<div class="d-flex justify-content-center flex-column align-items-center p-4">
     <h1 mat-dialog-title>Detalles</h1>
     <!-- <div mat-dialog-content class="text-center">
         <p class="text-center">¿Está seguro de {{mensaje}} la campaña?</p>
     </div> -->
 
     <ul class="list-unstyled  col-12 ">
-        <li *ngFor="let data of mensaje | keyvalue">
-            <span>{{data.key}} : {{data.value}}</span>
+        <li *ngFor="let data of mensaje | keyvalue" class="row justify-content-center align-items-center">
+            <div class="col-3">{{data.key}} </div>
+            <div class="col-9">: {{data.value}}</div>
         </li>
     </ul>
 

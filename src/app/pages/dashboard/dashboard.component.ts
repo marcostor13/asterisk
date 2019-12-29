@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PhpserviceService } from 'src/app/services/phpservice.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 export interface DialogData {
   idenvio_ivr: string;
@@ -26,6 +27,32 @@ export class DashboardComponent implements OnInit {
   dataUser;
   dataSource;
   campanaSelect;
+  date: any = new Date();
+  dateGroup: FormGroup;
+
+  //CHARTS
+
+  single: any[];
+  single2: any[];
+  view: any[] = [470, 300];
+
+  // options
+  showXAxis: boolean = true;
+  showYAxis: boolean = true;
+  gradient: boolean = false;
+  showLegend: boolean = false;
+  showXAxisLabel: boolean = true;
+  yAxisLabel1: string = "Campañas";
+  yAxisLabel2: string = "Estado de llamada";
+  showYAxisLabel: boolean = true;
+  xAxisLabel1: string = "Total números gestionados";
+  xAxisLabel2: string = "Total números";
+
+
+  colorScheme = {
+    domain: ["#dbddff", "#5d78ff", "#C7B42C", "#AAAAAA"]
+
+  };
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -33,8 +60,8 @@ export class DashboardComponent implements OnInit {
   constructor(private cookieService: CookieService, private phpserviceService: PhpserviceService, private router: Router, public dialog: MatDialog) {
     if (this.cookieService.get('datauser') != '') {
       this.dataUser = JSON.parse(this.cookieService.get('datauser'));
-      console.log(this.dataUser);
     }
+    this.dateGroup = this.createFormGroup();
 
   }
 
@@ -54,33 +81,64 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {    
-    this.getCampanas()
+    this.date.setDate(this.date.getDate() - 7);
+    this.getCampanas();
+    this.getDataDashboard();
   }
 
-  getCalls(e) {
+  createFormGroup() {
+    return new FormGroup({      
+      campana: new FormControl('0'),
+      dateStart: new FormControl(this.date),
+      dateEnd: new FormControl(new Date()),
+    });
+  }
 
+
+  getDataDashboard(){
+
+    var self = this;
     const data = {
-      funcion: 'obtenerLLamadas',
-      nombre_campana: e.target.value      
+      funcion: 'getDataDashboard',
+      nombre_campana: this.dateGroup.get('campana').value,
+      dateStart: this.dateGroup.get('dateStart').value.toJSON().slice(0, 10),
+      dateEnd: this.dateGroup.get('dateEnd').value.toJSON().slice(0, 10),
+      tiponivel: this.dataUser.id_nivel,
+      idnegocio: this.dataUser.id_negocio,
     };
 
-    this.phpserviceService.funciones(data).subscribe(datos => {
-      console.log(datos);
+    this.phpserviceService.funciones(data).subscribe((datos:any) => {
       if (datos['status'] == 200) {
-        this.calls = datos['data'];
-        this.callAmount = datos['data'].length;
-        document.getElementById('subTitle').innerText = this.callAmount.toString() + ' llamadas';
-        this.dataSource = new MatTableDataSource(this.calls)
-        this.dataSource.paginator = this.paginator;
+        
+        self.single = datos.data.cuadro1;
+        self.single2 = datos.data.cuadro2;
+
+        Object.assign(this, this.single);
+        Object.assign(this, this.single2);
+
+        if (datos.data.detalleLLamadas){
+          this.calls = datos.data.detalleLLamadas;
+          this.callAmount = datos.data.detalleLLamadas.length;
+          document.getElementById('subTitle').innerText = this.callAmount.toString() + ' llamadas';
+          this.dataSource = new MatTableDataSource(this.calls)
+          this.dataSource.paginator = this.paginator;
+        }else{
+          this.calls = [];
+          this.callAmount = 0;
+          document.getElementById('subTitle').innerText = this.callAmount.toString() + ' llamadas';
+          this.dataSource = new MatTableDataSource(this.calls)
+          this.dataSource.paginator = this.paginator;
+        }
+        
+        
       } else {
         console.log(datos['message']);
       }
     });
-
   }
 
+
   openDetail(datos): void {
-    console.log(datos);
     const dialogRef = this.dialog.open(ModalComponentCalls, {
       width: '250px',
       data: { datos: datos }
@@ -95,15 +153,12 @@ export class DashboardComponent implements OnInit {
   getCampanas(){
 
     const data = {
-      funcion: 'obtenerCampanas2',
+      funcion: 'obtenerLLamadas2',
       tiponivel: this.dataUser.id_nivel,
       idnegocio: this.dataUser.id_negocio,      
     };
 
-    console.log(data);
-
     this.phpserviceService.funciones(data).subscribe(datos => {
-      console.log(datos);
       if (datos['status'] == 200) {
         this.campanas = datos['data'];
       } else {
@@ -116,6 +171,11 @@ export class DashboardComponent implements OnInit {
   viewDetail(idenvio_ivr) {
     console.log(idenvio_ivr);
   }
+
+  get dateStart() { return this.dateGroup.get('dateStart'); }
+  get dateEnd() { return this.dateGroup.get('dateEnd'); }
+  get campana() { return this.dateGroup.get('campana'); }
+  
 
 }
 
