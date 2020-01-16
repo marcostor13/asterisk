@@ -77,7 +77,7 @@ export class CampanasComponent implements OnInit {
     setInterval(function(){
       self.obtenerCampanas();
       self.obtenerCampanas2();
-    }, 5000);
+    }, 15000);
 
   }
 
@@ -91,7 +91,7 @@ export class CampanasComponent implements OnInit {
       idnivel: this.dataUser.id_nivel
     };
     this.phpserviceService.funciones(data).subscribe(datos => {
-
+      
       if (datos['status'] == 200) {
         this.campanas = datos['data'];
         this.cantCampanas = datos['data'].length;

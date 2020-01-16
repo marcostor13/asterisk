@@ -258,6 +258,8 @@ export class CrearCampanaComponent implements OnInit {
       data.funcion = 'crearCampana';
       data.carga = this.fileUpload2;
 
+      console.log(data);
+
 
       this.phpserviceService.funciones(data).subscribe(datos => {
         if (datos['status'] == 200) {
