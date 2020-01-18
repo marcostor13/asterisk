@@ -74,6 +74,8 @@ export class CampanasComponent implements OnInit {
 
   ngOnInit() {
     var self = this;
+    self.obtenerCampanas();
+    self.obtenerCampanas2();
     setInterval(function(){
       self.obtenerCampanas();
       self.obtenerCampanas2();

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class PhpserviceService {
 
-  url = 'http://178.128.157.95/controladores/'; // disponer url de su servidor que tiene las páginas PHP
+  url = '/controladores/'; // disponer url de su servidor que tiene las páginas PHP
 
   constructor(private http: HttpClient) { }
 
