@@ -155,7 +155,7 @@ export class CampanasComponent implements OnInit {
       nombrecampana: nombrecampana
     };
 
-    window.location.href = "http://178.128.157.95/controladores/get/descargarReporte.php?nombre_campana=" + nombrecampana;
+    window.location.href = "/controladores/get/descargarReporte.php?nombre_campana=" + nombrecampana;
   }
 
 
